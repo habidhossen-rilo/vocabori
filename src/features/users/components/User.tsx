@@ -9,7 +9,7 @@ export default async function User() {
   return (
     <div>
       <form action={handleCreateUser}>
-        <button type="button">Create</button>
+        <button type="submit">Create</button>
       </form>
     </div>
   );
