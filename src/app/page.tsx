@@ -1,7 +1,10 @@
+import User from "@/features/users/components/User";
+
 export default function Home() {
   return (
     <div>
-      <h1>Vocabori Bhai</h1>
+      Home Page
+      <User />
     </div>
   );
 }
