@@ -1,8 +1,7 @@
-export type FormData = {
+export type IUserInput = {
   name: string;
   email: string;
   photo: string;
-  role: string;
   password: string;
 };
 
@@ -12,6 +11,16 @@ export type CreatedUser = {
   photo: string;
   role: string;
   password: string;
+};
+
+export type User = {
+  _id: string;
+  name: string;
+  email: string;
+  photo: string;
+  role: string;
+  password: string;
+  __v: number;
 };
 
 export type CreateUserResponse = {
