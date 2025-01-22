@@ -1,0 +1,36 @@
+/* AddTutorial */
+.formContainer {
+  @apply mx-auto my-20 max-w-md rounded-lg bg-white p-4 shadow-md;
+}
+.formTitle {
+  @apply text-center text-2xl font-bold;
+}
+.formGroup {
+  @apply mt-4;
+}
+.formSubmitButton {
+  @apply mt-4 w-full;
+}
+
+/* Tutorials */
+.tutorialsContainer {
+  @apply mx-auto my-20 max-w-6xl px-4;
+}
+.tutorialTitle {
+  @apply mb-10 text-center text-3xl font-bold text-gray-800;
+}
+.tutorialCardContainer {
+  @apply grid grid-cols-1 grid-cols-3 gap-8;
+}
+.tutorialCard {
+  @apply flex flex-col items-center rounded-lg bg-white p-3 shadow-md transition-transform duration-300 ease-in-out hover:shadow-lg;
+}
+.cardTitle {
+  @apply mb-4 text-center text-lg font-semibold text-gray-700;
+}
+.videoContainer {
+  @apply relative w-full pt-[55%];
+}
+.videoContainer iframe {
+  @apply absolute left-0 top-0 h-full w-full rounded-lg;
+}

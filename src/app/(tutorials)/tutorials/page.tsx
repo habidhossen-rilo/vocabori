@@ -1,12 +1,8 @@
-import Tutorial from "@/features/tutorials/components/Tutorial";
+import Tutorials from "@/features/tutorials/components/Tutorials";
 import React from "react";
 
 const TutorialPage = () => {
-  return (
-    <>
-      <Tutorial />
-    </>
-  );
+  return <Tutorials />;
 };
 
 export default TutorialPage;
