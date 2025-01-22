@@ -2,7 +2,7 @@ import { dbConnect } from "@/database/db";
 import Tutorial from "../../schemas/tutorial.schema";
 import {
   TutorialInput,
-  tutorialSchema,
+  tutorialValidator,
 } from "@/features/tutorials/validation/tutorial.validation";
 
 // CREATE a tutorial
@@ -11,7 +11,7 @@ export async function createTutorial(data: TutorialInput) {
   try {
     await dbConnect();
 
-    const parsedData = tutorialSchema.parse(data);
+    const parsedData = tutorialValidator.parse(data);
     const { title, url } = parsedData;
     const tutorial = new Tutorial({ title, url });
     await tutorial.save();
