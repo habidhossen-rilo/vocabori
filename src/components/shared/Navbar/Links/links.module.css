@@ -1,0 +1,8 @@
+.links {
+  @apply hidden items-center gap-4 space-x-4 md:block lg:block;
+}
+
+.menuButton,
+.mobileLinks {
+  @apply block cursor-pointer md:hidden lg:hidden;
+}

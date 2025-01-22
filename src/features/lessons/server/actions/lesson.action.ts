@@ -1,17 +1,18 @@
+"use server";
 import { dbConnect } from "@/database/db";
 import lessonSchema from "../../schemas/lesson.schema";
 import { createLessonValidation } from "../../validation/lessons.validation";
 
-export async function createLesson(lesson: {
+export const createLesson = async (lesson: {
   lesson_name: string;
   admin_id: string;
-}) {
-  console.log(lesson, "lesson");
+}): Promise<{ success: boolean; message: string } | undefined> => {
+  // const { lesson_name, admin_id } = Object.fromEntries(formData);
+  // console.log(lesson_name, admin_id, "lesson_name, admin_id");
   let validateData = createLessonValidation.parse(lesson);
   await dbConnect();
 
   try {
-    console.log(validateData, "validateData");
     const previousLessson = await lessonSchema
       .findOne()
       .sort({ createdAt: -1 });
@@ -32,4 +33,4 @@ export async function createLesson(lesson: {
   } catch (error) {
     console.log(error);
   }
-}
+};
