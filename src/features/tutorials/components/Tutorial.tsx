@@ -8,8 +8,8 @@ const Tutorial = () => {
   const handleCreateTutorial = async (formData: FormData) => {
     "use server";
 
-    const title = formData.get("title");
-    const url = formData.get("url");
+    const title = formData.get("title") as string;
+    const url = formData.get("url") as string;
     const data = { title, url };
 
     await createTutorial(data);

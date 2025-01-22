@@ -1,30 +1,24 @@
 "use server";
-import { dbConnect } from "@/database/db";
-import userSchema from "../../schemas/user.schema";
-import { CreatedUser, FormData } from "../../types/user.type";
-import { validateUserInput } from "../../validation/userValidation";
-import bcrypt from "bcryptjs";
 
-export const createUser = async (formData: FormData) => {
+import { dbConnect } from "@/database/db";
+import bcrypt from "bcryptjs";
+import Users from "../../schemas/user.schema";
+import { UserInput, userSchema } from "../../validation/userValidation";
+
+export const createUser = async (data: UserInput) => {
   try {
     await dbConnect();
 
-    const { name, email, photo, password } = Object.fromEntries(
-      formData as unknown as [string, string][],
-    );
+    const parsedData = userSchema.parse(data);
+    const { name, email, photo, password } = parsedData;
 
-    const errors = validateUserInput({ name, email, photo, password });
-    if (errors.length > 0) {
-      throw new Error(errors.join(", "));
-    }
-
-    const existingUser = await userSchema.findOne({ email });
+    const existingUser = await Users.findOne({ email });
     if (existingUser) {
       throw new Error("User already exists");
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser: CreatedUser = {
+    const newUser = {
       name,
       email,
       photo,
@@ -32,14 +26,22 @@ export const createUser = async (formData: FormData) => {
       password: hashedPassword,
     };
 
-    const createdUser = await userSchema.create(newUser);
+    const createdUser = await Users.create(newUser);
+    console.log(createdUser);
 
-    return { message: "User created successfully", user: createdUser };
+    return {
+      success: true,
+      message: "User created successfully",
+      user: createdUser,
+    };
   } catch (error: unknown) {
     console.error(error);
     if (error instanceof Error) {
-      throw new Error(error.message || "Something went wrong");
+      return {
+        success: false,
+        message: error.message || "Something went wrong",
+      };
     }
-    throw new Error("Something went wrong");
+    return { success: false, message: "Something went wrong" };
   }
 };

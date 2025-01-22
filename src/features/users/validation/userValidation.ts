@@ -1,29 +1,19 @@
-export function validateUserInput(user: {
-  name: string;
-  email: string;
-  photo: string;
-  password: string;
-}) {
-  const errors: string[] = [];
+import * as z from "zod";
 
-  if (!user.name || user.name.length < 3) {
-    errors.push("Name must be at least 3 characters long");
-  }
+export const userSchema = z.object({
+  name: z.string().min(2, {
+    message: "Name must be at least 2 characters.",
+  }),
+  email: z.string().email({
+    message: "Please enter a valid email address.",
+  }),
+  password: z.string().min(8, {
+    message: "Password must be at least 8 characters.",
+  }),
+  photo: z.string().url({
+    message: "Please enter a valid URL for the photo.",
+  }),
+  role: z.string().default("user"),
+});
 
-  if (
-    !user.email ||
-    !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(user.email)
-  ) {
-    errors.push("Invalid email address");
-  }
-
-  if (!user.photo || !user.photo.startsWith("http")) {
-    errors.push("Photo must be a valid URL");
-  }
-
-  if (!user.password || user.password.length < 6) {
-    errors.push("Password must be at least 6 characters long");
-  }
-
-  return errors;
-}
+export type UserInput = z.infer<typeof userSchema>;
