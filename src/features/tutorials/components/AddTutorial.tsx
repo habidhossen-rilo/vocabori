@@ -1,9 +1,9 @@
 import React from "react";
 import { createTutorial } from "../server/actions/tutorial.action";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import styles from "../styles/tutorials.module.css";
+import SubmitButton from "./SubmitButton";
 
 const AddTutorial = async () => {
   const handleCreateTutorial = async (formData: FormData) => {
@@ -32,9 +32,7 @@ const AddTutorial = async () => {
           <Label htmlFor="url">Video URL</Label>
           <Input type="text" name="url" id="url" placeholder="Enter URL" />
         </div>
-        <Button type="submit" className={styles.formSubmitButton}>
-          Add Tutorial
-        </Button>
+        <SubmitButton />
       </div>
     </form>
   );

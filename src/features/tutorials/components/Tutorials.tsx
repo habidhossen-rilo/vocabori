@@ -4,7 +4,6 @@ import styles from "../styles/tutorials.module.css";
 
 const Tutorials = async () => {
   const response = await getTutorials();
-  console.log(response);
 
   const convertToEmbedUrl = (url: string) => {
     const urlObj = new URL(url);
@@ -19,7 +18,6 @@ const Tutorials = async () => {
         {response?.tutorials &&
           response.tutorials.map((tutorial) => (
             <div key={tutorial._id} className={styles.tutorialCard}>
-              <h3 className={styles.cardTitle}>{tutorial.title}</h3>
               <div className={styles.videoContainer}>
                 <iframe
                   src={convertToEmbedUrl(tutorial.url)}
@@ -28,6 +26,7 @@ const Tutorials = async () => {
                   allowFullScreen
                 ></iframe>
               </div>
+              <h3 className={styles.cardTitle}>{tutorial.title}</h3>
             </div>
           ))}
       </div>
