@@ -1,15 +1,18 @@
 import Link from "next/link";
 import Links from "./Links/Links";
 import style from "./navbar.module.css";
-const Navbar = () => {
-  console.log("Navbar");
+import { getServerAuthSession } from "@/lib/authOptions";
+
+const Navbar = async () => {
+  const authSession = await getServerAuthSession();
   return (
     <div className={style.container}>
       <Link href={"/"} className={style.logo}>
-        Logo
+        VO<span className="text-[#eeee83]">CA</span>BO
+        <span className="text-[#eeee83]">RI</span>
       </Link>
       <div>
-        <Links />
+        <Links session={authSession} />
       </div>
     </div>
   );
