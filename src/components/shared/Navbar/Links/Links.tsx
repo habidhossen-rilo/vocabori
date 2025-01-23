@@ -4,7 +4,7 @@ import { useState } from "react";
 import styles from "./links.module.css";
 import Image from "next/image";
 import NavLink from "../NavLink/NavLink";
-// import { handleLogout } from "@/lib/action";
+import { Dropdown } from "../Dropdown/Dropdown";
 
 const links = [
   {
@@ -25,27 +25,23 @@ const links = [
   },
 ];
 
-const Links = () => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Links = ({ session }: { session: any }) => {
   const [open, setOpen] = useState(false);
-
   return (
     <div className={styles.container}>
       <div className={styles.links}>
         {links.map((link) => (
           <NavLink item={link} key={link.title} />
         ))}
-        {/* {session?.user ? (
-          <>
-            {session.user?.isAdmin && (
-              <NavLink item={{ title: "Admin", path: "/admin" }} />
-            )}
-            <form action={handleLogout}>
-              <button className={styles.logout}>Logout</button>
-            </form>
-          </>
+        {session?.user ? (
+          <Dropdown />
         ) : (
-          <NavLink item={{ title: "Login", path: "/login" }} />
-        )} */}
+          <>
+            <NavLink item={{ title: "Login", path: "/login" }} />
+            <NavLink item={{ title: "Signup", path: "/signup" }} />
+          </>
+        )}
       </div>
       <Image
         className={styles.menuButton}

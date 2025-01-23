@@ -1,5 +1,5 @@
 import { dbConnect } from "@/database/db";
-import { NextAuthOptions } from "next-auth";
+import { getServerSession, NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import Users from "../features/users/schemas/user.schema";
 import bcrypt from "bcryptjs";
@@ -14,7 +14,6 @@ export const authOptions: NextAuthOptions = {
           email: string;
           password: string;
         };
-        console.log(credentials, "Credentials");
         try {
           if (!email || !password) {
             throw new Error("Email and password required");
@@ -30,16 +29,13 @@ export const authOptions: NextAuthOptions = {
 
           // Compare the entered password with the hashed password in the database
           const isMatch = await bcrypt.compare(password, user.password);
-          console.log(isMatch, "isMatch");
           if (!isMatch) {
             return null;
           }
-
-          console.log("Login successful");
-          console.log(user, "User");
           return user;
         } catch (error) {
           console.error("Error during login", error);
+          return null;
         }
       },
     }),
@@ -54,7 +50,6 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        // token.accessToken = user.accessToken;
         token._id = user._id;
         token.email = user.email;
         token.role = user.role;
@@ -65,7 +60,6 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (token) {
-        // session.accessToken = token.accessToken;
         session.user._id = token._id;
         session.user.email = token.email;
         session.user.role = token.role;
@@ -76,3 +70,5 @@ export const authOptions: NextAuthOptions = {
     },
   },
 };
+
+export const getServerAuthSession = () => getServerSession(authOptions);
