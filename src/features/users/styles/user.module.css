@@ -1,6 +1,6 @@
 .signupCard {
-  @apply mx-auto mt-8 max-w-md;
+  @apply mx-auto mt-8 max-w-xl;
 }
-.H2 {
-  @apply mb-4 text-center text-2xl font-bold;
+.createAccount {
+  @apply mb-4 text-center text-2xl font-bold text-green-600;
 }
