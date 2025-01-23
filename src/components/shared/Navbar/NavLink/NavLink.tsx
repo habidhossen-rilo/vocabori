@@ -11,9 +11,7 @@ const NavLink = ({ item }: NavLinkProps) => {
   return (
     <Link
       href={item.path}
-      className={`${styles.container} ${
-        pathName === item.path && styles.active
-      }`}
+      className={`${styles.navLink} ${pathName === item.path && styles.active}`}
     >
       {item.title}
     </Link>

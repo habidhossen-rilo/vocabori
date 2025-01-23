@@ -1,5 +1,5 @@
 .links {
-  @apply hidden items-center gap-4 space-x-4 md:block lg:block;
+  @apply hidden items-center gap-4 space-x-4 text-white md:block lg:block;
 }
 
 .menuButton,

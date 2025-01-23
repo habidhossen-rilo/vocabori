@@ -1,0 +1,6 @@
+.navLink {
+  @apply px-2 py-1 text-center leading-normal;
+}
+.active {
+  @apply rounded-2xl bg-white text-black;
+}

@@ -31,8 +31,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} bg-brandBg antialiased`}
       >
         <div className="container-layout">
-          <Navbar />
-          {children}
+          <div>
+            <Navbar />
+            {children}
+          </div>
           <Footer />
         </div>
         <ReactHotToast />
