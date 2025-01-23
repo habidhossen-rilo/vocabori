@@ -27,3 +27,8 @@ export type CreateUserResponse = {
   message: string;
   user: CreatedUser;
 };
+
+export type LoginUser = {
+  email: string;
+  password: string;
+};

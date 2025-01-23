@@ -3,9 +3,15 @@
 import { dbConnect } from "@/database/db";
 import bcrypt from "bcryptjs";
 import Users from "../../schemas/user.schema";
-import { UserInput, userSchema } from "../../validation/userValidation";
+import { userSchema } from "../../validation/userValidation";
+type IUser = {
+  name: string;
+  email: string;
+  photo: string;
+  password: string;
+};
 
-export const createUser = async (data: UserInput) => {
+export const createUser = async (data: IUser) => {
   try {
     await dbConnect();
 
@@ -27,13 +33,15 @@ export const createUser = async (data: UserInput) => {
     };
 
     const createdUser = await Users.create(newUser);
-    console.log(createdUser);
+
+    const convertedUser = JSON.parse(JSON.stringify(createdUser));
 
     return {
       success: true,
       message: "User created successfully",
-      user: createdUser,
+      user: convertedUser,
     };
+    // console.log(createdUser);
   } catch (error: unknown) {
     console.error(error);
     if (error instanceof Error) {
