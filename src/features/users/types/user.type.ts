@@ -32,3 +32,12 @@ export type LoginUser = {
   email: string;
   password: string;
 };
+
+export type Status = "pending" | "error" | "success";
+
+export type FormResponseProps = {
+  formResponse: {
+    success: boolean;
+    message: string;
+  };
+};

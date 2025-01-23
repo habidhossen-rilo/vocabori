@@ -1,6 +1,28 @@
 .signupCard {
-  @apply mx-auto mt-8 max-w-xl;
+  @apply mt-8;
 }
 .createAccount {
   @apply mb-4 text-center text-2xl font-bold text-green-600;
+}
+
+.loginForm {
+  @apply mx-auto max-w-md space-y-4;
+}
+
+.signupForm {
+  @apply mx-auto max-w-md space-y-4;
+}
+
+.loadingBtn {
+  @apply w-full disabled:opacity-50;
+}
+.spinner {
+  @apply ml-2 animate-spin;
+}
+
+.alreadyAccount {
+  @apply mx-auto max-w-md text-center;
+}
+.alreadyAccountTxt {
+  @apply mt-2 text-start;
 }
