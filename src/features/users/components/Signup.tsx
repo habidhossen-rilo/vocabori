@@ -13,10 +13,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { userSchema } from "../validation/userValidation";
 import { createUser } from "../server/actions/user.action";
 import { signIn } from "next-auth/react";
+import styles from "../styles/user.module.css";
+import FormResponse from "./FormResponse";
+import SubmitIcon from "./SubmitIcon";
 
 export default function SignUpForm() {
   const [formResponse, setFormResponse] = useState<{
@@ -56,25 +58,16 @@ export default function SignUpForm() {
       .catch((error) => {
         console.log(error);
       });
-    // setFormResponse(response);
-    // if (response.success) {
-    //   form.reset();
-    // }
   }
 
   return (
     <>
-      {formResponse && (
-        <Alert
-          variant={formResponse.success ? "default" : "destructive"}
-          className="mb-4"
-        >
-          <AlertTitle>{formResponse.success ? "Success" : "Error"}</AlertTitle>
-          <AlertDescription>{formResponse.message}</AlertDescription>
-        </Alert>
-      )}
+      {formResponse && <FormResponse formResponse={formResponse} />}
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className={styles.signupForm}
+        >
           <FormField
             control={form.control}
             name="name"
@@ -118,6 +111,7 @@ export default function SignUpForm() {
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
             name="photo"
@@ -133,7 +127,7 @@ export default function SignUpForm() {
           />
 
           <Button type="submit" className="w-full">
-            Submit
+            Submit <SubmitIcon />
           </Button>
         </form>
       </Form>
