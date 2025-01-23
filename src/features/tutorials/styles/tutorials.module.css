@@ -14,10 +14,10 @@
 
 /* Tutorials */
 .tutorialsContainer {
-  @apply mx-auto my-20 max-w-6xl px-4;
+  @apply my-20;
 }
 .tutorialTitle {
-  @apply mb-10 text-center text-3xl font-bold text-gray-800;
+  @apply mb-12 text-center text-3xl font-bold text-gray-800;
 }
 .tutorialCardContainer {
   @apply grid grid-cols-3 gap-8;
@@ -26,7 +26,7 @@
   @apply flex flex-col items-center rounded-lg bg-white p-3 shadow-md transition-transform duration-300 ease-in-out hover:shadow-lg;
 }
 .cardTitle {
-  @apply mb-4 text-center text-lg font-semibold text-gray-700;
+  @apply mb-2 mt-4 text-center text-lg font-semibold text-gray-700;
 }
 .videoContainer {
   @apply relative w-full pt-[55%];
