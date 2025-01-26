@@ -12,6 +12,7 @@ import { CiLogout } from "react-icons/ci";
 import { CgProfile } from "react-icons/cg";
 import { MdDashboard } from "react-icons/md";
 import { signOut } from "next-auth/react";
+import Link from "next/link";
 
 export function Dropdown() {
   return (
@@ -36,12 +37,14 @@ export function Dropdown() {
               <CgProfile className="text-lg" />
             </DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            Dashboard
-            <DropdownMenuShortcut>
-              <MdDashboard className="text-lg" />
-            </DropdownMenuShortcut>
-          </DropdownMenuItem>
+          <Link href="/dashboard/add-vocabulary" className="cursor-pointer">
+            <DropdownMenuItem>
+              Dashboard
+              <DropdownMenuShortcut>
+                <MdDashboard className="text-lg" />
+              </DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
 
