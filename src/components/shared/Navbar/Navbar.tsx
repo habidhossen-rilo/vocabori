@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Links from "./Links/Links";
-import style from "./navbar.module.css";
+import style from "./Navbar.module.css";
 import { getServerAuthSession } from "@/lib/authOptions";
 
 const Navbar = async () => {
