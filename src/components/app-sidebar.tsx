@@ -6,6 +6,7 @@ import {
   Home,
   SquareTerminal,
   Video,
+  WholeWord,
 } from "lucide-react";
 import * as React from "react";
 
@@ -51,6 +52,21 @@ const data = {
       ],
     },
     {
+      title: "Vocabulary",
+      url: "",
+      icon: WholeWord,
+      items: [
+        {
+          title: "Add Vocabulary",
+          url: "/dashboard/add-vocabulary",
+        },
+        {
+          title: "Manage Vocabulary",
+          url: "/dashboard/manage-Vocabulary",
+        },
+      ],
+    },
+    {
       title: "Tutorial",
       url: "",
       icon: Video,
@@ -70,7 +86,6 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { data: session } = useSession();
-  console.log(session);
 
   return (
     <Sidebar collapsible="icon" {...props}>

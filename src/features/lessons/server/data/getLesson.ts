@@ -7,7 +7,7 @@ export const getLessons = async () => {
     await dbConnect();
     const lessons = await lessonSchema.find().sort({ createdAt: -1 });
     return {
-      success: false,
+      success: true,
       message: "Lessons fetched successfully",
       data: lessons,
     };

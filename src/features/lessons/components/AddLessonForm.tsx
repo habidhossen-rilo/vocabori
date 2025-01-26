@@ -2,7 +2,6 @@
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -12,29 +11,43 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { createLesson } from "../server/actions/lesson.action";
+import { useSession } from "next-auth/react";
+import toast from "react-hot-toast";
+import { useState } from "react";
+import SubmitButton from "@/components/shared/SubmitButton/SubmitButton";
 
 const formSchema = z.object({
   lesson_name: z.string({ required_error: "Lesson name is required" }),
-  admin_id: z.string({ required_error: "Admin ID is required" }),
 });
 
 const AddLessonForm = () => {
+  const session = useSession();
+  const [formState, setFormState] = useState({ pending: false });
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       lesson_name: "",
-      admin_id: "",
     },
   });
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
-    createLesson(values);
+    setFormState({ pending: true });
+    const adminId: string | undefined = session.data?.user?._id;
+    if (!adminId) return toast.error("Admin ID not found");
+    createLesson({
+      lesson_name: values.lesson_name,
+      admin_id: adminId,
+    }).then((res) => {
+      if (res?.success) {
+        toast.success(res.message);
+        setFormState({ pending: false });
+        form.reset();
+      } else if (!res?.success) {
+        toast.error(res?.message);
+        setFormState({ pending: false });
+      }
+    });
   }
   return (
     <Form {...form}>
@@ -48,32 +61,11 @@ const AddLessonForm = () => {
               <FormControl>
                 <Input placeholder="Lesson Name" {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="admin_id"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Admin Id</FormLabel>
-              <FormControl>
-                <Input placeholder="Admin ID" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button variant="secondary" type="submit">
-          Submit
-        </Button>
+        <SubmitButton pending={formState.pending} name={"Add Lesson"} />
       </form>
     </Form>
   );
