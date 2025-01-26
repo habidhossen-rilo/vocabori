@@ -1,7 +1,7 @@
-import React from "react";
+import Tutorials from "@/features/tutorials/components/Tutorials";
 
 const ManageTutorialPage = () => {
-  return <div>Manage</div>;
+  return <Tutorials />;
 };
 
 export default ManageTutorialPage;
