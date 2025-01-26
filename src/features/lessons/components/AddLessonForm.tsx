@@ -12,10 +12,10 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { createLesson } from "../server/actions/lesson.action";
-import SubmitButton from "./SubmitButton/SubmitButton";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import SubmitButton from "@/components/shared/SubmitButton/SubmitButton";
 
 const formSchema = z.object({
   lesson_name: z.string({ required_error: "Lesson name is required" }),
@@ -65,7 +65,7 @@ const AddLessonForm = () => {
             </FormItem>
           )}
         />
-        <SubmitButton pending={formState.pending} />
+        <SubmitButton pending={formState.pending} name={"Add Lesson"} />
       </form>
     </Form>
   );

@@ -3,14 +3,20 @@
 import { Button } from "@/components/ui/button";
 import styles from "./submitButton.module.css";
 
-const SubmitButton = ({ pending }: { pending: boolean }) => {
+const SubmitButton = ({
+  pending,
+  name,
+}: {
+  pending: boolean;
+  name: string;
+}) => {
   return (
     <Button
       type="submit"
       className={styles.formSubmitButton}
       disabled={pending}
     >
-      {pending ? "Adding..." : "Add Lesson"}
+      {pending ? "Adding..." : name}
     </Button>
   );
 };

@@ -1,17 +1,18 @@
+"use server";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { dbConnect } from "@/database/db";
-import vocabularySchema from "../../schemas/vocabulary.schema";
-import { Vocabulary } from "../../types/vocabulary";
 import { createVocabularyValidation } from "../../validation/vocabulary.validation";
+import vocabularySchema from "../../schemas/vocabulary.schema";
+import { MongoServerError } from "mongodb";
 
 export const createVocabulary = async (
-  vocabulary: Vocabulary,
-): Promise<
-  { success: boolean; message: string; data: Vocabulary | null } | undefined
-> => {
-  const validationVocabulary = createVocabularyValidation.parse(vocabulary);
+  vocabulary: any,
+): Promise<{ success: boolean; message: string; data: any } | undefined> => {
   await dbConnect();
+  const validationVocabulary = createVocabularyValidation.parse(vocabulary);
   try {
-    const newVocabulary = await vocabularySchema.create(validationVocabulary);
+    let newVocabulary = await vocabularySchema.create(validationVocabulary);
+    newVocabulary = JSON.parse(JSON.stringify(newVocabulary));
     if (!newVocabulary) {
       return {
         success: false,
@@ -24,7 +25,15 @@ export const createVocabulary = async (
       message: "Vocabulary created successfully",
       data: newVocabulary,
     };
-  } catch (error) {
-    console.log(error);
+  } catch (error: unknown) {
+    if (error instanceof MongoServerError && error.code === 11000) {
+      const duplicateField = Object.keys(error.keyValue)[0];
+      const duplicateValue = error.keyValue[duplicateField];
+      return {
+        success: false,
+        message: `The ${duplicateField} "${duplicateValue}" already exists.`,
+        data: null,
+      };
+    }
   }
 };
