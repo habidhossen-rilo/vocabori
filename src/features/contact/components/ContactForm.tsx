@@ -1,67 +1,111 @@
+"use client";
+
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import styles from "../styles/contactform.module.css";
+import { createContact } from "../server/action/contact.action";
+
+const formSchema = z.object({
+  firstName: z.string().min(1, "First name is required"),
+  lastName: z.string().min(1, "Last name is required"),
+  email: z.string().email("Invalid email address"),
+  message: z.string().min(10, "Message must be at least 10 characters long"),
+});
 
 const ContactForm = () => {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      message: "",
+    },
+  });
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    // Handle form submission
+    createContact(values);
+    console.log(values);
+  }
+
   return (
-    <div className={styles.formContainer}>
-      <form className={styles.formWrapper}>
-        <div className={styles.inputGroup}>
-          <div className={styles.inputField}>
-            <Label htmlFor="first-name" className={styles.label}>
-              First Name
-            </Label>
-            <Input
-              type="text"
-              id="first-name"
-              placeholder="John"
-              className={styles.input}
-            />
-          </div>
-
-          <div className={styles.inputField}>
-            <Label htmlFor="last-name" className={styles.label}>
-              Last Name
-            </Label>
-            <Input
-              type="text"
-              id="last-name"
-              placeholder="Doe"
-              className={styles.input}
-            />
-          </div>
-        </div>
-
-        <div className={styles.inputField}>
-          <Label htmlFor="email" className={styles.label}>
-            Email address
-          </Label>
-          <Input
-            type="email"
-            id="email"
-            placeholder="johndoe@example.com"
-            className={styles.input}
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className={styles.formContainer}
+      >
+        <div className={styles.Name}>
+          <FormField
+            control={form.control}
+            name="firstName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>First Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="John" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="lastName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Last Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="Doe" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
         </div>
-
-        <div className={styles.inputField}>
-          <Label htmlFor="message" className={styles.label}>
-            Message
-          </Label>
-          <Textarea
-            id="message"
-            placeholder="Message"
-            className={styles.textarea}
-          />
-        </div>
-
-        <Button className={styles.button} type="submit">
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email address</FormLabel>
+              <FormControl>
+                <Input placeholder="exmple@example.com" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="message"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Message</FormLabel>
+              <FormControl>
+                <Textarea placeholder="Your message here..." {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit" className={styles.formSubmitButton}>
           Send message
         </Button>
       </form>
-    </div>
+    </Form>
   );
 };
 

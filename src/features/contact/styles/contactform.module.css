@@ -1,31 +1,15 @@
 .formContainer {
-  @apply mx-auto max-w-lg rounded-lg border border-gray-300 p-6 shadow-md;
-}
-
-.inputGroup {
-  @apply grid grid-cols-1 gap-4 md:grid-cols-2;
-}
-
-.inputField {
-  @apply flex flex-col;
-}
-
-.label {
-  @apply mb-2 text-sm font-medium text-gray-700;
-}
-
-.input {
-  @apply w-full rounded-md border border-gray-300 p-2 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand;
-}
-
-.textarea {
-  @apply w-full rounded-md border border-gray-300 p-2 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand;
-}
-
-.button {
-  @apply mt-6 w-full rounded-md bg-brand px-4 py-2 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500;
+  @apply space-y-8 px-10;
 }
 
 .formWrapper {
   @apply flex flex-col gap-5;
+}
+
+.Name {
+  @apply grid grid-cols-2 gap-4;
+}
+
+.formSubmitButton {
+  @apply mt-6 w-full bg-brand hover:bg-purple-500;
 }
