@@ -16,6 +16,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import styles from "../styles/contactform.module.css";
 import { createContact } from "../server/action/contact.action";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
@@ -25,6 +27,7 @@ const formSchema = z.object({
 });
 
 const ContactForm = () => {
+  const [formState, setFormState] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -36,9 +39,20 @@ const ContactForm = () => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    setFormState(true);
     // Handle form submission
-    createContact(values);
-    console.log(values);
+    createContact(values)
+      .then((response) => {
+        console.log(response);
+        toast.success(response.message);
+        form.reset();
+        setFormState(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(error.message);
+        setFormState(false);
+      });
   }
 
   return (
@@ -101,9 +115,16 @@ const ContactForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className={styles.formSubmitButton}>
-          Send message
-        </Button>
+
+        {formState ? (
+          <Button disabled className={styles.formSubmitButton}>
+            Sending message...
+          </Button>
+        ) : (
+          <Button type="submit" className={styles.formSubmitButton}>
+            Send message
+          </Button>
+        )}
       </form>
     </Form>
   );

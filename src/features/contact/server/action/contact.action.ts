@@ -13,7 +13,7 @@ export const createContact = async (
   try {
     const validatedData = createContactValidation.parse(contact);
     await contactSchema.create(validatedData);
-    return { success: true, message: "Contact message sent successfully" };
+    return { success: true, message: "Your message sent successfully" };
   } catch (error) {
     console.error(error);
     if (error instanceof z.ZodError) {
