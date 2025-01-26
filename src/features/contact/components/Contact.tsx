@@ -13,7 +13,6 @@ const Contact = () => {
     <section className={styles.section}>
       <div className={styles.container}>
         <div>
-          <p className={styles.heading}>Contact us</p>
           <h1 className={styles.title}>Chat to our friendly team</h1>
           <p className={styles.subtitle}>
             We’d love to hear from you. Please fill out this form or shoot us an
@@ -54,7 +53,7 @@ const Contact = () => {
                 Come say hello at our office HQ.
               </p>
               <p className={styles.cardLink}>
-                100 Smith Street Collingwood VIC 3066 AU
+                Port Connectiong Road, Chittagong, Bangladesh
               </p>
             </div>
 

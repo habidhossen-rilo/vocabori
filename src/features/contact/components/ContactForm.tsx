@@ -7,7 +7,7 @@ import styles from "../styles/contactform.module.css";
 const ContactForm = () => {
   return (
     <div className={styles.formContainer}>
-      <form>
+      <form className={styles.formWrapper}>
         <div className={styles.inputGroup}>
           <div className={styles.inputField}>
             <Label htmlFor="first-name" className={styles.label}>
