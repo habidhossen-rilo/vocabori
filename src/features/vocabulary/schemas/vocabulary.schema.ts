@@ -8,12 +8,12 @@ const VocabularySchema = new Schema(
     use: { type: String, required: true },
     lesson_id: {
       type: Schema.Types.ObjectId,
-      ref: "Lesson",
+      ref: "Lessons",
       required: true,
     },
     admin_id: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Users",
       required: true,
     },
   },
