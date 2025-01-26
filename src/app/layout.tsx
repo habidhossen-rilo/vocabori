@@ -33,7 +33,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} bg-brandBg antialiased`}
       >
         <AuthProvider session={session}>
-          <div className="container-layout">{children}</div>
+          <div className="">{children}</div>
         </AuthProvider>
         <ReactHotToast />
       </body>
