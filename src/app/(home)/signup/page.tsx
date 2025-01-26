@@ -1,5 +1,5 @@
 import SignUpForm from "@/features/users/components/Signup";
-import styles from "../../features/users/styles/user.module.css";
+import styles from "../../../features/users/styles/user.module.css";
 import PageSwap from "@/features/users/components/PageSwap";
 
 const page = () => {
