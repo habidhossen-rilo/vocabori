@@ -36,6 +36,7 @@ export default function LoginForm() {
       password: "",
     },
   });
+
   function onSubmit(values: z.infer<typeof loginSchema>) {
     setLoader("pending");
     loginUser(values)
@@ -45,6 +46,7 @@ export default function LoginForm() {
             setFormResponse(response);
             setLoader("success");
             router.push("/lessons");
+            router.refresh();
           } else {
             setLoader("error");
             setFormResponse(response);
