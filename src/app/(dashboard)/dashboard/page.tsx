@@ -1,7 +1,14 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { getLessons } from "@/features/lessons/server/data/getLesson";
+import { getTutorialCount } from "@/features/tutorials/server/data/tutorial.data";
+import { getUserCount } from "@/features/users/server/data/user.data";
 import { Users, BookOpen, Video } from "lucide-react";
 
-const DashboardHome = () => {
+const DashboardHome = async () => {
+  const tutorials = await getTutorialCount();
+  const users = await getUserCount();
+  const lessons = await getLessons();
+
   return (
     <div className="grid grid-cols-1 gap-4 p-6 sm:grid-cols-3">
       {/* Total Users Card */}
@@ -11,7 +18,7 @@ const DashboardHome = () => {
           <Users className="h-6 w-6 text-blue-500" />
         </CardHeader>
         <CardContent>
-          <p className="text-2xl font-bold">1,234</p>
+          <p className="text-2xl font-bold">{users.count || 0}</p>
           <p className="text-xs text-muted-foreground">Active users</p>
         </CardContent>
       </Card>
@@ -23,7 +30,7 @@ const DashboardHome = () => {
           <BookOpen className="h-6 w-6 text-green-500" />
         </CardHeader>
         <CardContent>
-          <p className="text-2xl font-bold">456</p>
+          <p className="text-2xl font-bold">{lessons?.data.length || 0}</p>
           <p className="text-xs text-muted-foreground">Lessons available</p>
         </CardContent>
       </Card>
@@ -35,7 +42,7 @@ const DashboardHome = () => {
           <Video className="h-6 w-6 text-yellow-500" />
         </CardHeader>
         <CardContent>
-          <p className="text-2xl font-bold">12</p>
+          <p className="text-2xl font-bold">{tutorials.count || 0}</p>
           <p className="text-xs text-muted-foreground">Tutorials available</p>
         </CardContent>
       </Card>

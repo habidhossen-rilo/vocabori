@@ -20,3 +20,24 @@ export async function getTutorials() {
     return { success: false, error: "Unknown error occurred" };
   }
 }
+
+// GET count of tutorials
+export async function getTutorialCount() {
+  "use server";
+  try {
+    await dbConnect();
+
+    // Get the count of tutorials
+    const tutorialCount = await Tutorial.countDocuments();
+
+    return {
+      success: true,
+      count: tutorialCount,
+    };
+  } catch (error) {
+    if (error instanceof Error) {
+      return { success: false, error: error.message };
+    }
+    return { success: false, error: "Unknown error occurred" };
+  }
+}
