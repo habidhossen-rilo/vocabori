@@ -1,6 +1,5 @@
 import { getLessons } from "../server/data/getLesson";
 import SingleLesson from "./SingleLesson/SingleLesson";
-import AddLessonForm from "./AddLessonForm";
 
 const Lesson = async () => {
   const lessons = await getLessons();
@@ -14,7 +13,6 @@ const Lesson = async () => {
             </div>
           );
         })}
-      <AddLessonForm />
     </div>
   );
 };

@@ -1,0 +1,3 @@
+.formSubmitButton {
+  @apply mt-6 w-full bg-brand hover:bg-purple-500;
+}

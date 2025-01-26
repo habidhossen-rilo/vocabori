@@ -7,8 +7,6 @@ export const createLesson = async (lesson: {
   lesson_name: string;
   admin_id: string;
 }): Promise<{ success: boolean; message: string } | undefined> => {
-  // const { lesson_name, admin_id } = Object.fromEntries(formData);
-  // console.log(lesson_name, admin_id, "lesson_name, admin_id");
   let validateData = createLessonValidation.parse(lesson);
   await dbConnect();
 
@@ -30,6 +28,23 @@ export const createLesson = async (lesson: {
     }
     await lessonSchema.create(validateData);
     return { success: true, message: "Lesson created successfully" };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getSingleLesson = async (id: string) => {
+  await dbConnect();
+  try {
+    const lesson = await lessonSchema.findById(id);
+    if (!lesson) {
+      return { success: false, message: "Lesson not found" };
+    }
+    return {
+      success: true,
+      message: "Lesson Retrieve Successfully",
+      data: lesson,
+    };
   } catch (error) {
     console.log(error);
   }
