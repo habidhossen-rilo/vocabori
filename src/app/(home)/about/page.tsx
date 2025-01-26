@@ -1,11 +1,9 @@
-import { getServerAuthSession } from "@/lib/authOptions";
+import About from "@/features/about/components/About";
 
 export default async function AboutPage() {
-  const session = await getServerAuthSession();
-  console.log(session);
   return (
-    <div>
-      <p>AboutPage</p>
-    </div>
+    <>
+      <About />
+    </>
   );
 }

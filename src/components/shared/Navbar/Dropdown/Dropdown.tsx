@@ -37,14 +37,12 @@ export function Dropdown() {
               <CgProfile className="text-lg" />
             </DropdownMenuShortcut>
           </DropdownMenuItem>
-          <Link href="/dashboard/add-vocabulary" className="cursor-pointer">
-            <DropdownMenuItem>
-              Dashboard
-              <DropdownMenuShortcut>
-                <MdDashboard className="text-lg" />
-              </DropdownMenuShortcut>
-            </DropdownMenuItem>
-          </Link>
+          <DropdownMenuItem>
+            <Link href="/dashboard">Dashboard</Link>
+            <DropdownMenuShortcut>
+              <MdDashboard className="text-lg" />
+            </DropdownMenuShortcut>
+          </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
 

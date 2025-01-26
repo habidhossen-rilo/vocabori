@@ -1,6 +1,12 @@
 "use client";
 
-import { Book, GalleryVerticalEnd, SquareTerminal, Video } from "lucide-react";
+import {
+  Book,
+  GalleryVerticalEnd,
+  Home,
+  SquareTerminal,
+  Video,
+} from "lucide-react";
 import * as React from "react";
 
 import {
@@ -19,6 +25,7 @@ import {
 import { useSession } from "next-auth/react";
 import { NavMain } from "./nav-main";
 import { NavUser } from "./nav-user";
+import Link from "next/link";
 
 // This is sample data.
 const data = {
@@ -27,7 +34,6 @@ const data = {
       title: "Dashboard",
       url: "/dashboard",
       icon: SquareTerminal,
-      isActive: true,
     },
     {
       title: "Lesson",
@@ -76,6 +82,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <GalleryVerticalEnd className="size-4" />
               </div>
               <h1 className="text-2xl font-bold">Dashboard</h1>
+              <Link href="/" className="ml-8">
+                <Home className="text-blue-600" />
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
