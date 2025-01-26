@@ -4,6 +4,7 @@ import {
   Book,
   GalleryVerticalEnd,
   Home,
+  MessageCircle,
   SquareTerminal,
   Video,
 } from "lucide-react";
@@ -64,6 +65,11 @@ const data = {
           url: "/dashboard/manage-tutorial",
         },
       ],
+    },
+    {
+      title: "Manage Contact",
+      url: "/dashboard/manage-contact",
+      icon: MessageCircle,
     },
   ],
 };
