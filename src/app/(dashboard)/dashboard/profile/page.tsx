@@ -1,5 +1,11 @@
+import UserProfile from "@/features/profile/components/UserProfile";
+
 const page = () => {
-  return <div></div>;
+  return (
+    <>
+      <UserProfile />
+    </>
+  );
 };
 
 export default page;

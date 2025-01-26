@@ -1,0 +1,68 @@
+.container {
+  @apply font-sans leading-normal tracking-wider antialiased;
+  @apply flex items-center justify-center bg-cover p-4;
+}
+
+.card {
+  @apply mx-auto my-8 flex max-w-4xl flex-col items-center lg:my-0 lg:flex-row;
+}
+
+.content {
+  @apply p-4 text-center md:p-12 lg:text-left;
+}
+
+.profileImageMobile {
+  @apply mx-auto -mt-16 mb-4 block h-48 w-48 rounded-full bg-cover bg-center shadow-xl;
+}
+
+.name {
+  @apply pt-8 text-3xl font-bold lg:pt-0;
+}
+
+.divider {
+  @apply mx-auto w-4/5 border-b-2 border-green-500 pt-3 opacity-25 lg:mx-0;
+}
+
+.title {
+  @apply flex items-center justify-center pt-4 text-base font-bold lg:justify-start;
+}
+
+.location {
+  @apply flex items-center justify-center pt-2 text-xs text-gray-600 lg:justify-start lg:text-sm;
+}
+
+.description {
+  @apply pt-8 text-sm;
+}
+
+.contactButton {
+  @apply my-8 flex items-center rounded-lg bg-zinc-600 px-4 py-2 font-bold text-white hover:bg-green-900;
+}
+
+.socialLinks {
+  @apply mx-auto mt-6 flex w-4/5 flex-wrap items-center justify-between pb-16 lg:w-full lg:pb-0;
+}
+
+.socialLinks a {
+  @apply h-6 fill-current text-gray-600 hover:text-green-700;
+}
+
+.imageCol {
+  @apply relative h-auto w-full rounded-full shadow-2xl lg:block lg:w-2/5;
+}
+
+.themeToggle {
+  @apply absolute right-0 top-0 mr-4 mt-4;
+}
+
+.icon {
+  @apply h-4 fill-current pr-4 text-green-700;
+}
+
+.darkTheme {
+  @apply bg-gray-900 text-white;
+}
+
+.lightTheme {
+  @apply bg-white text-gray-900;
+}

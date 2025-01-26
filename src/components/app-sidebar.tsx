@@ -6,6 +6,7 @@ import {
   Home,
   MessageCircle,
   SquareTerminal,
+  User,
   Video,
 } from "lucide-react";
 import * as React from "react";
@@ -35,6 +36,11 @@ const data = {
       title: "Dashboard",
       url: "/dashboard",
       icon: SquareTerminal,
+    },
+    {
+      title: "Profile",
+      url: "/dashboard/profile",
+      icon: User,
     },
     {
       title: "Lesson",
