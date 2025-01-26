@@ -1,0 +1,12 @@
+.messageContainer {
+  @apply mx-10 mt-5 flex flex-col gap-2;
+}
+.message {
+  @apply justify-between border p-3 shadow-sm md:flex;
+}
+.title {
+  @apply mt-2 text-center text-xl font-bold;
+}
+.messageHead {
+  @apply hidden justify-between border bg-brand p-3 text-white shadow-sm md:flex;
+}
