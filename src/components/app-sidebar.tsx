@@ -1,0 +1,92 @@
+"use client";
+
+import { Book, GalleryVerticalEnd, SquareTerminal, Video } from "lucide-react";
+import * as React from "react";
+
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarRail,
+} from "@/components/ui/sidebar";
+
+import {
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar";
+import { useSession } from "next-auth/react";
+import { NavMain } from "./nav-main";
+import { NavUser } from "./nav-user";
+
+// This is sample data.
+const data = {
+  navMain: [
+    {
+      title: "Dashboard",
+      url: "/dashboard",
+      icon: SquareTerminal,
+      isActive: true,
+    },
+    {
+      title: "Lesson",
+      url: "",
+      icon: Book,
+      items: [
+        {
+          title: "Add Lesson",
+          url: "/dashboard/add-lesson",
+        },
+        {
+          title: "Manage Lessons",
+          url: "/dashboard/manage-lessons",
+        },
+      ],
+    },
+    {
+      title: "Tutorial",
+      url: "",
+      icon: Video,
+      items: [
+        {
+          title: "Add Tutorial",
+          url: "/dashboard/add-tutorial",
+        },
+        {
+          title: "Manage Tutorials",
+          url: "/dashboard/manage-tutorial",
+        },
+      ],
+    },
+  ],
+};
+
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { data: session } = useSession();
+  console.log(session);
+
+  return (
+    <Sidebar collapsible="icon" {...props}>
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem className="py-2">
+            <SidebarMenuButton size="lg">
+              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                <GalleryVerticalEnd className="size-4" />
+              </div>
+              <h1 className="text-2xl font-bold">Dashboard</h1>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
+      <SidebarContent>
+        <NavMain items={data.navMain} />
+      </SidebarContent>
+      <SidebarFooter>
+        <NavUser user={session} />
+      </SidebarFooter>
+      <SidebarRail />
+    </Sidebar>
+  );
+}
