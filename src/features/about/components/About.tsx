@@ -22,7 +22,7 @@ const About = () => {
                 <span className={styles.logoYellow}>RI</span>
               </span>
             </h2>
-            <p className={styles.description}>
+            <div className={styles.description}>
               <p className={styles.descriptionParagraph}>
                 At LanguageLearn, we believe that learning a new language is not
                 just about vocabulary and grammar__it&apos;s about immersing
@@ -43,7 +43,7 @@ const About = () => {
                 platform for language learners everywhere. Join us today and
                 take the first step toward mastering a new language.
               </p>
-            </p>
+            </div>
           </div>
         </div>
       </div>
