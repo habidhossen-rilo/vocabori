@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ReactHotToast from "@/components/shared/Toaster";
-import Navbar from "@/components/shared/Navbar/Navbar";
-import Footer from "@/components/shared/Footer/Footer";
 import AuthProvider from "@/context/AuthProvider";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
@@ -29,18 +27,13 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await getServerSession(authOptions);
-  console.log("session from layout---->", session);
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} bg-brandBg antialiased`}
       >
         <AuthProvider session={session}>
-          <div className="container-layout">
-            <Navbar />
-            {children}
-            <Footer />
-          </div>
+          <div className="container-layout">{children}</div>
         </AuthProvider>
         <ReactHotToast />
       </body>
