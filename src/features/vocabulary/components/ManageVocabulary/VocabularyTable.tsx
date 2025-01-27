@@ -207,7 +207,13 @@ export function DataTable({
         </div>
 
         {/* add vocabularies modal */}
-        <AddVocabularyModal lessons={lessons} />
+        <AddVocabularyModal
+          lessons={{
+            data: lessons,
+            success: true,
+            message: "Lessons fetched successfully",
+          }}
+        />
       </div>
 
       <div className="rounded-md border">

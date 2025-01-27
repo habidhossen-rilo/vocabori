@@ -42,7 +42,7 @@ const formSchema = z.object({
 
 type AddVocabularyFormProps = {
   lessons?: {
-    data: Lesson;
+    data: Lesson[];
     success: boolean;
     message: string;
   };
@@ -168,11 +168,12 @@ const AddVocabularyModal = ({ lessons }: AddVocabularyFormProps) => {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {lessons.map((lesson: Lesson) => (
-                        <SelectItem key={lesson._id} value={lesson._id}>
-                          {lesson.lesson_name}
-                        </SelectItem>
-                      ))}
+                      {lessons?.data &&
+                        lessons.data.map((lesson: Lesson) => (
+                          <SelectItem key={lesson._id} value={lesson._id}>
+                            {lesson.lesson_name}
+                          </SelectItem>
+                        ))}
                     </SelectContent>
                   </Select>
                   <FormMessage />
