@@ -4,6 +4,7 @@ import { dbConnect } from "@/database/db";
 import { createVocabularyValidation } from "../../validation/vocabulary.validation";
 import vocabularySchema from "../../schemas/vocabulary.schema";
 import { MongoServerError } from "mongodb";
+import { revalidatePath } from "next/cache";
 
 export const createVocabulary = async (
   vocabulary: any,
@@ -20,6 +21,8 @@ export const createVocabulary = async (
         data: null,
       };
     }
+
+    revalidatePath("/dashboard/vocabulary");
     return {
       success: true,
       message: "Vocabulary created successfully",

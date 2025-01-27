@@ -5,7 +5,10 @@ import vocabularySchema from "../../schemas/vocabulary.schema";
 export const getVocabularies = async () => {
   await dbConnect();
   try {
-    const vocabularies = await vocabularySchema.find().sort({ createdAt: -1 });
+    const vocabularies = await vocabularySchema
+      .find()
+      .sort({ createdAt: -1 })
+      .populate("lesson_id");
     if (vocabularies) {
       return {
         success: true,

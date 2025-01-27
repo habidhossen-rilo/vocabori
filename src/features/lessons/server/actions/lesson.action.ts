@@ -2,6 +2,7 @@
 import { dbConnect } from "@/database/db";
 import lessonSchema from "../../schemas/lesson.schema";
 import { createLessonValidation } from "../../validation/lessons.validation";
+import { revalidatePath } from "next/cache";
 
 export const createLesson = async (lesson: {
   lesson_name: string;
@@ -27,6 +28,7 @@ export const createLesson = async (lesson: {
       };
     }
     await lessonSchema.create(validateData);
+    revalidatePath("/dashboard/lesson");
     return { success: true, message: "Lesson created successfully" };
   } catch (error) {
     console.log(error);
