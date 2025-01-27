@@ -11,9 +11,7 @@ export default async function LessonDetailsPage({
   if (params.id) {
     const result = await getVocabulariesByLessonId(params.id);
     vocabularies = JSON.parse(JSON.stringify(result.data)) || [];
-    // vocabularies = result.data || [];
   }
-  console.log(vocabularies);
   return (
     <>
       <VocabularyPage vocabularies={vocabularies} />
