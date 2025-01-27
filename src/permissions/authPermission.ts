@@ -141,15 +141,15 @@ export function hasPermission<Resource extends keyof Permissions>(
   action: Permissions[Resource]["action"],
   data?: Permissions[Resource]["dataType"],
 ) {
-  return user.roles.some((role) => {
-    const permission = (ROLES as RolesWithPermissions)[role][resource]?.[
-      action
-    ];
-    if (permission == null) return false;
-
-    if (typeof permission === "boolean") return permission;
-    return data != null && permission(user, data);
-  });
+  console.log(user, resource, action, data, ROLES);
+  // return user.roles.some((role) => {
+  //   const permission = (ROLES as RolesWithPermissions)[role][resource]?.[
+  //     action
+  //   ];
+  //   if (permission == null) return false;
+  //   if (typeof permission === "boolean") return permission;
+  //   return data != null && permission(user, data);
+  // });
 }
 
 // USAGE:
