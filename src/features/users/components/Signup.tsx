@@ -19,10 +19,8 @@ import { signIn } from "next-auth/react";
 import styles from "../styles/user.module.css";
 import FormResponse from "./FormResponse";
 import SubmitIcon from "./SubmitIcon";
-import { useRouter } from "next/navigation";
 
 export default function SignUpForm() {
-  const router = useRouter();
   const [formResponse, setFormResponse] = useState<{
     success: boolean;
     message: string;
@@ -54,8 +52,6 @@ export default function SignUpForm() {
             password: values.password,
           }).then((response) => {
             console.log(response);
-            router.refresh();
-            router.push("/lessons");
           });
         }
       })

@@ -1,22 +1,18 @@
-import VocabularyPage from "../../../../features/vocabulary/components/Vocabulary";
-import { getVocabulariesByLessonId } from "../../../../features/vocabulary/server/data/vocabulary.data";
-import { Vocabulary } from "../../../../features/vocabulary/types/vocabulary";
+import { getSingleLesson } from "@/features/lessons/server/actions/lesson.action";
 
 export default async function LessonDetailsPage({
   params,
 }: {
   params: { id: string };
 }) {
-  let vocabularies: Vocabulary[] = [];
+  let lesson;
   if (params.id) {
-    const result = await getVocabulariesByLessonId(params.id);
-    vocabularies = JSON.parse(JSON.stringify(result.data)) || [];
-    // vocabularies = result.data || [];
+    lesson = await getSingleLesson(params.id);
   }
-  console.log(vocabularies);
+  console.log(lesson);
   return (
-    <>
-      <VocabularyPage vocabularies={vocabularies} />
-    </>
+    <div>
+      <p>{lesson?.data.lesson_name}</p>
+    </div>
   );
 }

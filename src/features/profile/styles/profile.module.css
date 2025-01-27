@@ -36,7 +36,7 @@
 }
 
 .contactButton {
-  @apply my-8 flex items-center rounded-lg bg-zinc-600 px-4 py-2 text-white hover:bg-green-900;
+  @apply my-8 flex items-center rounded-lg bg-zinc-600 px-4 py-2 font-bold text-white hover:bg-green-900;
 }
 
 .socialLinks {
