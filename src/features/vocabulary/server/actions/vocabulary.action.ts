@@ -1,14 +1,15 @@
 "use server";
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { dbConnect } from "@/database/db";
 import { createVocabularyValidation } from "../../validation/vocabulary.validation";
 import vocabularySchema from "../../schemas/vocabulary.schema";
 import { MongoServerError } from "mongodb";
-import { revalidatePath } from "next/cache";
+import { Vocabulary } from "../../types/vocabulary";
 
 export const createVocabulary = async (
-  vocabulary: any,
-): Promise<{ success: boolean; message: string; data: any } | undefined> => {
+  vocabulary: Vocabulary,
+): Promise<
+  { success: boolean; message: string; data: Vocabulary | null } | undefined
+> => {
   await dbConnect();
   const validationVocabulary = createVocabularyValidation.parse(vocabulary);
   try {
@@ -21,8 +22,6 @@ export const createVocabulary = async (
         data: null,
       };
     }
-
-    revalidatePath("/dashboard/vocabulary");
     return {
       success: true,
       message: "Vocabulary created successfully",

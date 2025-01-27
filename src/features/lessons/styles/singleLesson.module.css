@@ -1,3 +1,6 @@
 .lessonContainer {
   @apply my-3 flex items-center justify-between rounded-lg bg-[#e0dbf1] p-3;
 }
+.lessonName {
+  @apply flex items-center gap-3;
+}

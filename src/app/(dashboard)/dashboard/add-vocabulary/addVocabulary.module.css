@@ -1,0 +1,3 @@
+.addVocabularyContainer {
+  @apply mx-auto my-20 max-w-md rounded-xl bg-white p-6 shadow-sm;
+}

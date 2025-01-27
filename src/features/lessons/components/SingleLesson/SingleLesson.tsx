@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { LessonProps } from "../../types/lesson";
-import style from "./singleLesson.module.css";
 import Link from "next/link";
+import { BookCheck } from "lucide-react";
+import style from "../../styles/singleLesson.module.css";
 import { getServerAuthSession } from "@/lib/authOptions";
 import { hasPermission } from "@/permissions/authPermission";
-import { BookCheck } from "lucide-react";
 
 const SingleLesson = async ({ lesson }: LessonProps) => {
   const session = await getServerAuthSession();
