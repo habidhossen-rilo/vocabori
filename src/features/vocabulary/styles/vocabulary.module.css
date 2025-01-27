@@ -3,7 +3,7 @@
 }
 
 .vocabularyCard {
-  @apply relative h-[250px] rounded-lg border bg-brand p-8 text-center text-white shadow-lg;
+  @apply relative rounded-lg border bg-brand p-8 text-center text-white shadow-lg md:h-[250px];
 }
 
 .vocabularyWord {
@@ -15,7 +15,7 @@
 }
 
 .pronunciation {
-  @apply flex items-center justify-center gap-2 rounded-md bg-white py-1 text-lg font-semibold text-gray-700;
+  @apply flex items-center justify-center gap-2 rounded-md bg-white py-1 text-sm font-semibold text-gray-700 md:text-lg;
 }
 .pronunciationButton {
   @apply rounded-full border-2 bg-yellow-100 shadow-sm hover:bg-yellow-200 hover:shadow-lg;
