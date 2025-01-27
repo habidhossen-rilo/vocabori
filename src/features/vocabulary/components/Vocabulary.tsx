@@ -33,50 +33,56 @@ const VocabularyPage: React.FC<VocabularyPageProps> = ({ vocabularies }) => {
   const currentVocabulary = vocabularies[currentIndex];
 
   return (
-    <div className={styles.container}>
-      {/* Vocabulary Display */}
-      <div className={styles.vocabularyCard}>
-        <h2 className={styles.vocabularyWord}>{currentVocabulary?.word}</h2>
-        {/* Pronunciation Section */}
-        {currentVocabulary.pronunciation && (
-          <div className={styles.pronunciation}>
-            <span>Pronunciation: {currentVocabulary?.pronunciation}</span>
+    <div>
+      {vocabularies.length > 0 ? (
+        <div className={styles.container}>
+          {/* Vocabulary Display */}
+          <div className={styles.vocabularyCard}>
+            <h2 className={styles.vocabularyWord}>{currentVocabulary?.word}</h2>
+            {/* Pronunciation Section */}
+            {currentVocabulary.pronunciation && (
+              <div className={styles.pronunciation}>
+                <span>Pronunciation: {currentVocabulary?.pronunciation}</span>
+                <button
+                  className={styles.pronunciationButton}
+                  onClick={() => pronounceWord(currentVocabulary.word)}
+                >
+                  {/* You can use any icon, here I use a simple text representation for the audio icon */}
+                  🔊
+                </button>
+              </div>
+            )}
+            <p className={styles.vocabularyDefinition}>
+              {currentVocabulary?.english_word} - {currentVocabulary?.use}
+            </p>
+          </div>
+          {/* Navigation Buttons */}
+          <div className={styles.buttonGroup}>
             <button
-              className={styles.pronunciationButton}
-              onClick={() => pronounceWord(currentVocabulary.word)}
+              onClick={handlePrevious}
+              disabled={currentIndex === 0}
+              className={`${styles.button} ${
+                currentIndex === 0 ? styles.buttonDisabled : ""
+              }`}
             >
-              {/* You can use any icon, here I use a simple text representation for the audio icon */}
-              🔊
+              Previous
+            </button>
+            <button
+              onClick={handleNext}
+              disabled={currentIndex === vocabularies.length - 1}
+              className={`${styles.button} ${
+                currentIndex === vocabularies.length - 1
+                  ? styles.buttonDisabled
+                  : ""
+              }`}
+            >
+              Next
             </button>
           </div>
-        )}
-        <p className={styles.vocabularyDefinition}>
-          {currentVocabulary?.english_word} - {currentVocabulary?.use}
-        </p>
-      </div>
-      {/* Navigation Buttons */}
-      <div className={styles.buttonGroup}>
-        <button
-          onClick={handlePrevious}
-          disabled={currentIndex === 0}
-          className={`${styles.button} ${
-            currentIndex === 0 ? styles.buttonDisabled : ""
-          }`}
-        >
-          Previous
-        </button>
-        <button
-          onClick={handleNext}
-          disabled={currentIndex === vocabularies.length - 1}
-          className={`${styles.button} ${
-            currentIndex === vocabularies.length - 1
-              ? styles.buttonDisabled
-              : ""
-          }`}
-        >
-          Next
-        </button>
-      </div>
+        </div>
+      ) : (
+        <p className="text-center font-medium">No Vocabulary Found</p>
+      )}
     </div>
   );
 };

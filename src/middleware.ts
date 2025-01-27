@@ -16,7 +16,7 @@ export async function middleware(request: NextRequest) {
   // Define restricted paths
   const adminOnlyPaths = [
     "/dashboard",
-    "/dashboard/add-lesson",
+    "/dashboard/lesson",
     "/dashboard/vocabulary",
     "/dashboard/tutorial",
     "/dashboard/contact",

@@ -22,13 +22,13 @@ type Vocabulary = {
 };
 
 type User = {
-  _id: string;
-  name: string;
-  email: string;
-  photo: string;
+  _id?: string;
+  name?: string;
+  email?: string;
+  photo?: string;
   role: string;
-  password: string;
-  _v: number;
+  password?: string;
+  _v?: number;
 };
 
 type Contact = {
@@ -140,16 +140,26 @@ export function hasPermission<Resource extends keyof Permissions>(
   resource: Resource,
   action: Permissions[Resource]["action"],
   data?: Permissions[Resource]["dataType"],
-) {
-  console.log(user, resource, action, data, ROLES);
-  // return user.roles.some((role) => {
-  //   const permission = (ROLES as RolesWithPermissions)[role][resource]?.[
-  //     action
-  //   ];
-  //   if (permission == null) return false;
-  //   if (typeof permission === "boolean") return permission;
-  //   return data != null && permission(user, data);
-  // });
+): boolean {
+  if (!user) {
+    return false;
+  }
+  // Get the user's role
+  const userRole = user.role as keyof typeof ROLES;
+
+  // Check if the role exists in ROLES and has permissions for the resource and action
+  const rolePermissions = (ROLES as RolesWithPermissions)[userRole]?.[
+    resource
+  ]?.[action];
+
+  if (rolePermissions == null) return false; // If no permission is defined, deny by default
+
+  if (typeof rolePermissions === "boolean") {
+    return rolePermissions; // Return true/false directly if it's a boolean
+  }
+
+  // If permission is a function, evaluate it with user and data
+  return data != null && rolePermissions(user, data);
 }
 
 // USAGE:
