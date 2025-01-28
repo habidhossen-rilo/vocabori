@@ -4,6 +4,7 @@ import { createVocabularyValidation } from "../../validation/vocabulary.validati
 import vocabularySchema from "../../schemas/vocabulary.schema";
 import { MongoServerError } from "mongodb";
 import { Vocabulary } from "../../types/vocabulary";
+import { revalidatePath } from "next/cache";
 
 export const createVocabulary = async (
   vocabulary: Vocabulary,
@@ -22,6 +23,7 @@ export const createVocabulary = async (
         data: null,
       };
     }
+    revalidatePath("/dashboard/vocabulary");
     return {
       success: true,
       message: "Vocabulary created successfully",
