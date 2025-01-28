@@ -1,6 +1,6 @@
 .navLink {
-  @apply px-2 py-1 text-center leading-normal;
+  @apply px-2 py-1 text-center leading-normal text-white;
 }
 .active {
-  @apply rounded-2xl bg-white text-black;
+  @apply rounded-2xl bg-white text-gray-900;
 }

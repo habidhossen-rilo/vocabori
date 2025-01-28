@@ -1,8 +1,27 @@
-.links {
-  @apply hidden items-center gap-4 space-x-4 text-white md:block lg:block;
+.container {
+  @apply relative flex flex-col flex-wrap items-end justify-end transition-all;
 }
 
-.menuButton,
+.links {
+  @apply hidden items-center text-white md:flex md:flex-wrap lg:flex lg:gap-4 lg:space-x-4;
+}
+
 .mobileLinks {
-  @apply block cursor-pointer md:hidden lg:hidden;
+  @apply fixed inset-y-0 right-10 z-50 mt-16 flex h-1/2 w-fit flex-col items-start justify-start rounded-md bg-brand p-4 transition-transform duration-300 ease-in-out md:hidden lg:hidden;
+}
+
+.mobileLinks.open {
+  @apply translate-x-0;
+}
+
+.closeButton {
+  @apply cursor-pointer self-end text-white md:hidden lg:hidden;
+}
+
+.menuButton {
+  @apply cursor-pointer md:hidden lg:hidden;
+}
+
+.mobileLinks a {
+  @apply mb-4 text-lg;
 }
