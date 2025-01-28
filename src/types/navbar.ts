@@ -5,4 +5,5 @@ export type LinkProps = {
 
 export type NavLinkProps = {
   item: LinkProps;
+  onClick?: () => void;
 };
