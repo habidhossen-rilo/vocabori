@@ -45,33 +45,13 @@ const data = {
     },
     {
       title: "Lesson",
-      url: "",
+      url: "/dashboard/lesson",
       icon: Book,
-      items: [
-        {
-          title: "Add Lesson",
-          url: "/dashboard/add-lesson",
-        },
-        {
-          title: "Manage Lessons",
-          url: "/dashboard/manage-lessons",
-        },
-      ],
     },
     {
       title: "Vocabulary",
-      url: "",
+      url: "/dashboard/vocabulary",
       icon: WholeWord,
-      items: [
-        {
-          title: "Add Vocabulary",
-          url: "/dashboard/add-vocabulary",
-        },
-        {
-          title: "Manage Vocabulary",
-          url: "/dashboard/manage-Vocabulary",
-        },
-      ],
     },
     {
       title: "Tutorial",
@@ -90,7 +70,7 @@ const data = {
     },
     {
       title: "Manage Contact",
-      url: "/dashboard/manage-contact",
+      url: "/dashboard/contact",
       icon: MessageCircle,
     },
   ],
