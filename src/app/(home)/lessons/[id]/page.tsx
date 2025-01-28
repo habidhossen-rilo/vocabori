@@ -2,14 +2,15 @@ import VocabularyPage from "../../../../features/vocabulary/components/Vocabular
 import { getVocabulariesByLessonId } from "../../../../features/vocabulary/server/data/vocabulary.data";
 import { Vocabulary } from "../../../../features/vocabulary/types/vocabulary";
 
-export default async function LessonDetailsPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+export default async function LessonDetailsPage(props: Props) {
+  const { id } = await props.params;
   let vocabularies: Vocabulary[] = [];
-  if (params.id) {
-    const result = await getVocabulariesByLessonId(params.id);
+  if (id) {
+    const result = await getVocabulariesByLessonId(id);
     vocabularies = JSON.parse(JSON.stringify(result.data)) || [];
   }
   return (
