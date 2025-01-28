@@ -69,7 +69,11 @@ const Links = ({ session }: { session: any }) => {
       {open && (
         <div className={styles.mobileLinks}>
           {links.map((link) => (
-            <NavLink item={link} key={link.title} />
+            <NavLink
+              item={link}
+              key={link.title}
+              onClick={() => setOpen(false)}
+            />
           ))}
         </div>
       )}
