@@ -3,7 +3,7 @@
 }
 
 .links {
-  @apply hidden items-center text-white md:flex md:flex-wrap lg:flex lg:gap-4 lg:space-x-4;
+  @apply hidden items-center text-white md:flex md:flex-wrap lg:flex lg:space-x-4;
 }
 
 .mobileLinks {
