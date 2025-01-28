@@ -7,6 +7,6 @@ export type Vocabulary = {
   english_word: string;
   pronunciation: string;
   use: string;
-  lesson_id: Types.ObjectId | Lesson;
-  admin_id: Types.ObjectId | User;
+  lesson_id: Types.ObjectId | Lesson | string;
+  admin_id: Types.ObjectId | User | string;
 };
